@@ -1,0 +1,10 @@
+$color: red;
+$bg-color: blue;
+
+body {
+  background-color: $color;
+}
+nav {
+  position: sticky;
+  background-color: $bg-color;
+}
