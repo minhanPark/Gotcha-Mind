@@ -19,10 +19,15 @@ const server = app.listen(PORT, handleListening);
 
 const io = socketIO.listen(server);
 
-const sockets = [];
-
 io.on("connection", socket => {
-  sockets.push(socket.id);
-});
+  socket.on("newMessage", ({ message }) => {
+    socket.broadcast.emit("messageNotifi", {
+      message,
+      nickname: socket.nickname || "Anonymous"
+    });
+  });
 
-setInterval(() => console.log(sockets), 1000);
+  socket.on("setNickname", ({ nickname }) => {
+    socket.nickname = nickname;
+  });
+});
