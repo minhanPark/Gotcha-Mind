@@ -1,1 +1,1 @@
-console.log("ME ToO");
+io("/");
